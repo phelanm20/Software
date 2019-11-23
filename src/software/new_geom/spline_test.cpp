@@ -2,7 +2,7 @@
  * All code in this file has been copied directly from //geom/spline_test.cpp
  */
 
-#include "software/geom/spline.h"
+#include "software/new_geom/spline.h"
 
 #include <gtest/gtest.h>
 

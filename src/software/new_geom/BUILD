@@ -5,6 +5,7 @@ cc_library(
     srcs = [
         "point.cpp",
         "polynomial.cpp",
+        "spline.cpp",
         "vector.cpp",
     ],
     hdrs = [
@@ -14,6 +15,7 @@ cc_library(
         "point.h",
         "polynomial.h",
         "ray.h",
+        "spline.h",
         "vector.h",
     ],
     deps = [
@@ -70,6 +72,17 @@ cc_test(
     name = "vector_test",
     srcs = [
         "vector_test.cpp",
+    ],
+    deps = [
+        ":new_geom",
+        "@gtest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "spline_test",
+    srcs = [
+        "spline_test.cpp",
     ],
     deps = [
         ":new_geom",

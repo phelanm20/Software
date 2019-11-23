@@ -1,20 +1,16 @@
-/*
- * All code in this file has been copied directly from //geom/spline.cpp
- */
+#include "software/new_geom/spline.h"
 
-
-#include "software/geom/spline.h"
-
-Spline::Spline(const std::vector<Point>& points) : knots(points)
+Spline::Spline(const std::vector<Point>& points, unsigned int order) : knots(points)
 {
     initLinearSegments(points);
 }
 
-Spline::Spline(const std::initializer_list<Point>& points) : knots(points)
+Spline::Spline(const std::initializer_list<Point>& points, unsigned int order) : knots(points)
 {
     initLinearSegments(points);
 }
 
+//HERE
 Point Spline::valueAt(double val) const
 {
     if (val < 0.0 || val > 1.0)

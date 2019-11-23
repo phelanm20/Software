@@ -1,8 +1,3 @@
-/*
- * All code contained in this file has been copied directly from //geom/spline.h
- */
-
-
 #pragma once
 
 #include <vector>
@@ -11,32 +6,33 @@
 #include "software/new_geom/point.h"
 
 /**
- * A Spline maps a double to a Point with a parameterized piecewise function
- * composed of Polynomials over ranges
+ * A Spline is a parameterized piecewise function
+ * composed of Polynomials of set order between Points
  */
 class Spline
 {
 public:
     Spline() = delete;
+    
     /**
-     * Construct a spline by drawing line segments between consecutive
-     * Points
+     * Construct a spline by drawing Polynomials of set order between
+     * consecutive Points
      *
      * @throws std::invalid_argument if points.size() == 0
      *
      * @param points Points on the spline
      */
-    explicit Spline(const std::vector<Point>& points);
+    explicit Spline(const std::vector<Point>& points, unsigned int order);
 
     /**
-     * Construct a spline by drawing line segments between consecutive
-     * Points
+     * Construct a spline by drawing Polynomials of set order between
+     * consecutive Points
      *
      * @throws std::invalid_argument if points.size() == 0
      *
      * @param points Points on the spline
      */
-    Spline(const std::initializer_list<Point>& points);
+    Spline(const std::initializer_list<Point>& points, unsigned int order);
 
     /**
      * Calculates the value of spline evaluated at value val
