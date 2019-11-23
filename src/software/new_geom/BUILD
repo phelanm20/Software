@@ -3,6 +3,7 @@ package(default_visibility = ["//visibility:public"])
 cc_library(
     name = "new_geom",
     srcs = [
+        "circle.cpp",
         "point.cpp",
         "polynomial.cpp",
         "spline.cpp",
@@ -11,11 +12,14 @@ cc_library(
     hdrs = [
         "angle.h",
         "angular_velocity.h",
+        "circle.h",
+        "convex_shape.h",
         "geom_constants.h",
         "point.h",
         "polynomial.h",
         "ray.h",
         "spline.h",
+        "shape.h",
         "vector.h",
     ],
     deps = [
@@ -83,6 +87,10 @@ cc_test(
     name = "spline_test",
     srcs = [
         "spline_test.cpp",
+    ],
+    name = "circle_test",
+    srcs = [
+        "circle_test.cpp",
     ],
     deps = [
         ":new_geom",
