@@ -1,14 +1,16 @@
 #pragma once
-
+/*
 #include <vector>
+//#include <Eigen/Dense>
 
+#include <boost/numeric/ublas/matrix.hpp>
 #include "software/geom/polynomial.h"
 #include "software/new_geom/point.h"
 
 /**
  * A Spline is a parameterized piecewise function
  * composed of Polynomials of set order between Points
- */
+
 class Spline
 {
 public:
@@ -21,7 +23,7 @@ public:
      * @throws std::invalid_argument if points.size() == 0
      *
      * @param points Points on the spline
-     */
+
     explicit Spline(const std::vector<Point>& points, unsigned int order);
 
     /**
@@ -31,7 +33,7 @@ public:
      * @throws std::invalid_argument if points.size() == 0
      *
      * @param points Points on the spline
-     */
+
     Spline(const std::initializer_list<Point>& points, unsigned int order);
 
     /**
@@ -43,35 +45,35 @@ public:
      *
      * @return value of spline evaluated at value val
      *      * if not defined by a spline then return closest start/end point
-     */
+
     Point valueAt(double val) const;
 
     /**
      * Gets the number of knots in the spline including start and end points
      *
      * @return size of the spline
-     */
+
     size_t size(void) const;
 
     /**
      * Gets knots in the spline including start and end points
      *
      * @return knots in the spline
-     */
+
     const std::vector<Point> getKnots(void) const;
 
     /**
      * Gets start point of spline
      *
      * @return start point of spline
-     */
+
     const Point startPoint(void) const;
 
     /**
      * Gets end point of spline
      *
      * @return end point of spline
-     */
+
     const Point endPoint(void) const;
 
 private:
@@ -103,6 +105,8 @@ private:
      * @throws std::runtime_error if points.size() == 1
      *
      * @param points points to interpolate
-     */
+
     void initLinearSegments(const std::vector<Point>& points);
 };
+
+*/

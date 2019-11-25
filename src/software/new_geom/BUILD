@@ -18,8 +18,8 @@ cc_library(
         "point.h",
         "polynomial.h",
         "ray.h",
-        "spline.h",
         "shape.h",
+        "spline.h",
         "vector.h",
     ],
     deps = [
@@ -84,13 +84,20 @@ cc_test(
 )
 
 cc_test(
-    name = "spline_test",
-    srcs = [
-        "spline_test.cpp",
-    ],
     name = "circle_test",
     srcs = [
         "circle_test.cpp",
+    ],
+    deps = [
+        ":new_geom",
+        "@gtest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "spline_test",
+    srcs = [
+        "spline_test.cpp",
     ],
     deps = [
         ":new_geom",
