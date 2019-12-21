@@ -1,11 +1,7 @@
 #pragma once
 
 #include <eigen/dense>
-//alread in repo
-
-#include <vector>
 #include <math.h>
-#include <boost/numeric/ublas/matrix.hpp>
 #include "software/geom/polynomial.h"
 #include "software/new_geom/point.h"
 
