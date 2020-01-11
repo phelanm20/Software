@@ -109,8 +109,28 @@ void getCoeffs(const std::vector<Point> &points, unsigned int order)
     else if (points.size() > 1)
     {
         //Initialize coeffs matrix with zeros
+        int dimension = (order-1)*(points.size() - 1);
+
+        using Eigen::MatrixXd;
+        int main()
+        {
+            MatrixXd m(2,2);
+            m(0,0) = 3;
+            m(1,0) = 2.5;
+            m(0,1) = -1;
+            m(1,1) = m(1,0) + m(0,1);
+            std::cout << m << std::endl;
+        }
 
 
+        Eigen::MatrixXd mat = Eigen::MatrixXd::Constant(i, j, 1.0);
+
+        typedef Eigen::Matrix<int, dimension, dimension> MatrixXd;
+
+
+        typedef MatrixXd coeffMatrix = MatrixXd.zeros(dimension, dimension);
+
+        Matrix<int, dimension, dimension> coeffMatrix;
 
 
 
