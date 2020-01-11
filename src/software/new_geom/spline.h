@@ -1,5 +1,8 @@
 #pragma once
-#include "thunderbots/bazel-thunderbots/external/boost/boost/numeric/odeint/external/eigen/eigen.hpp"
+//THe below two files are from the external file under an Eigen BUILD file
+#include "External/Eigen/src/Core/util/NonMPL2.h"
+#include "Eigen/**/CMakeLists.txt"
+//#include "thunderbots/bazel-thunderbots/external/boost/numeric/ublas.hpp"
 #include <math.h>
 #include "software/new_geom/polynomial.h"
 #include "software/new_geom/point.h"
