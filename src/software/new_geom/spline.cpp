@@ -1,16 +1,16 @@
 #include "software/new_geom/spline.h"
 
-
-Spline::Spline(const std::vector<Point>& points, unsigned int order) : knots(points)
+Spline::Spline(const std::vector<Point> &points, unsigned int order) : knots(points)
 {
-    makeSegments(points, order);
+    initSegments(points);
 }
 
-Spline::Spline(const std::initializer_list<Point>& points, unsigned int order) : knots(points)
+Spline::Spline(const std::initializer_list<Point> &points, unsigned int order) : knots(points)
 {
-    makeSegments(points, order);
+    initSegments(points);
 }
 
+/*
 Point Spline::valueAt(double val) const
 {
     if (val < 0.0 || val > 1.0)
@@ -48,8 +48,9 @@ Point Spline::valueAt(double val) const
 
     return retval;
 }
+*/
 
-size_t Spline::size(void) const
+int Spline::size(void) const
 {
     return knots.size();
 }
@@ -69,34 +70,62 @@ const Point Spline::endPoint(void) const
     return knots.back();
 }
 
-/*
-Construct a polynomial from coefficients
-        * s.t. n = coeffs.size() == the degree of the polynomial
-* and of the form coeffs[0]*x^(n-1)
-* + coeffs[1]*x^(n-2) + ... + coeffs[n-1]
- *
-*/
-
-//Make a segment and add it to segment vector
-/*
-Polynomial poly_x = Polynomial(std::make_pair(input_start, points[i - 1].x()),
-                               std::make_pair(input_end, points[i].x()));
-Polynomial poly_y = Polynomial(std::make_pair(input_start, points[i - 1].y()),
-                               std::make_pair(input_end, points[i].y()));
-segments.push_back(SplineSegment(poly_x, poly_y, input_start, input_end));
-*/
-
-//void insert_element (size_type i, size_type j, const_reference t)
-
 void Spline::initSegments(const std::vector<Point>& points, unsigned int order)
 {
-    using namespace boost::numeric::ublas;
-    if (points.size() == 0 || points.size() == 1)
+    if (points.size() < 2)
     {
         throw std::runtime_error("Cannot create spline with less than two points.");
     }
     else if (points.size() > 1)
     {
+        for (int i = 1; i < points.size(); i++)
+        {
+            Point first = points[i-1];
+            Point last = points[i];
+
+            //HERE
+            //you need a function that takes stuff and outputs a vector of coefficients
+            //use the polynomial constructor that takes a list of coeffs as doubles
+            Polynomial poly = Polynomial !!!;
+
+            segments.push_back(SplineSegment(poly, first, last));
+        }
+    }
+}
+
+
+
+
+
+
+
+void Spline::initSegments(const std::vector<Point> &points, unsigned int order)
+{
+    //assume order == 3 FOR CONSTRUCTION PURPOSES
+    //assume points.size() == 3 FOR CONSTRUCTION PURPOSES
+    if (points.size() < 2)
+    {
+        throw std::runtime_error("Cannot create spline with less than two points.");
+    }
+    else if (points.size() > 1)
+    {
+        using namespace std;
+        using namespace Eigen;
+        int numSpline = points.size() - 1;
+
+        typedef Matrix<Scalar, RowsAtCompileTime, ColsAtCompileTime, Options> MatrixXd;
+
+        //Initialize interpolation matrix with zeros
+        int size = (order + 1)*(points.size() -1);
+        MatrixXd splineMatrix = MatrixXd::Zero(8,8);
+
+        //Fill half of interpolation matrix with first two continuity conditions
+        //For each polynomial
+        for(int i = 0; i < numSpline; i++)
+        {
+            splineMatrix(0, 4*i) = pow(POINTONE.x(), 3);
+            splineMatrix(0, 4*i + 1)
+        }
         for (size_t m = 1; m < points.size(); m++)
         {
 
@@ -143,6 +172,3 @@ void Spline::initSegments(const std::vector<Point>& points, unsigned int order)
     }
 }
 
-void fillInterpolationMatrix(Point start, Point end, unsigned int order){
-
-}

@@ -1,9 +1,10 @@
 #pragma once
-
-#include <eigen/dense>
+#include "thunderbots/bazel-thunderbots/external/boost/boost/numeric/odeint/external/eigen/eigen.hpp"
 #include <math.h>
-#include "software/geom/polynomial.h"
+#include "software/new_geom/polynomial.h"
 #include "software/new_geom/point.h"
+#include "software/new_geom/vector.h"
+
 
 /**
  * A Spline is a parameterized piecewise function
@@ -17,9 +18,9 @@ public:
      * Construct a spline by drawing Polynomials of set order between
      * consecutive Points
      *
-     * @throws std::invalid_argument if points.size() == 0
+     * @throws std::invalid_argument if points.size() < 2
      *
-     * @param points Points on the spline
+     * @param points Points Polynomials are drawn between
      */
     explicit Spline(const std::vector<Point> &points, unsigned int order);
 
@@ -27,9 +28,9 @@ public:
      * Construct a spline by drawing Polynomials of set order between
      * consecutive Points
      *
-     * @throws std::invalid_argument if points.size() == 0
+     * @throws std::invalid_argument if points.size() < 2
      *
-     * @param points Points on the spline
+     * @param points Points Polynomials are drawn between
      */
     Spline(const std::initializer_list<Point> &points, unsigned int order);
 
@@ -50,7 +51,7 @@ public:
      *
      * @return size of the spline
      */
-    size_t size(void) const;
+    int size(void) const;
 
     /**
      * Gets knots in the spline including start and end points
@@ -74,16 +75,15 @@ public:
     const Point endPoint(void) const;
 
 private:
-    class SplineSegment {
+    class SplineSegment{
     public:
-        SplineSegment(Polynomial x, Polynomial y, double start, double end)
-                : x(x), y(y), start(start), end(end) {
+        SplineSegment(Polynomial polynomial, Point start, Point end): polynomial(polynomial), start(start), end(end)
+        {
         }
 
-        const Polynomial x;
-        const Polynomial y;
-        const double start;
-        const double end;
+        const Polynomial polynomial;
+        const Point start;
+        const Point end;
     };
 
     // segments represent the polynomials that interpolate between points
