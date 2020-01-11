@@ -111,6 +111,17 @@ void getCoeffs(const std::vector<Point> &points, unsigned int order)
         //Initialize coeffs matrix with zeros
         int dimension = (order-1)*(points.size() - 1);
 
+        /*
+         * You CANNOT use Eigen for this because the Eigen we have (the one under Boost)
+         * is a straight up ALGEBRA library and we need MATRICES. So, you need to use the uBLAS library
+         * from Boost. Apparently it can solve linear equations stack overflow had a few lines of code.
+         * SO FIRSt change all of your header files!
+         * Then look at all the uBLAS documentation.
+         * Good Luck, it sucks.
+         *
+         * Might be faster to just stack overflow the stuff.
+         */
+
         using Eigen::MatrixXd;
         int main()
         {
