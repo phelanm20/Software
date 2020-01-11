@@ -78,6 +78,10 @@ void Spline::initSegments(const std::vector<Point>& points, unsigned int order)
     }
     else if (points.size() > 1)
     {
+        //can be a vector of vectors
+        //can be a matrix
+        getCoeffs(points, order);
+
         for (int i = 1; i < points.size(); i++)
         {
             Point first = points[i-1];
@@ -93,22 +97,24 @@ void Spline::initSegments(const std::vector<Point>& points, unsigned int order)
     }
 }
 
-
-
-
-
-
-
-void Spline::initSegments(const std::vector<Point> &points, unsigned int order)
+//hi this is my function
+//Return type cannot be void
+//use first/second/third/fourth degree polynomials
+void getCoeffs(const std::vector<Point> &points, unsigned int order)
 {
-    //assume order == 3 FOR CONSTRUCTION PURPOSES
-    //assume points.size() == 3 FOR CONSTRUCTION PURPOSES
     if (points.size() < 2)
     {
         throw std::runtime_error("Cannot create spline with less than two points.");
     }
     else if (points.size() > 1)
     {
+        //Initialize coeffs matrix with zeros
+
+
+
+
+
+
         using namespace std;
         using namespace Eigen;
         int numSpline = points.size() - 1;
