@@ -1,8 +1,6 @@
 #pragma once
-//THe below two files are from the external file under an Eigen BUILD file
-#include "External/Eigen/src/Core/util/NonMPL2.h"
-#include "Eigen/**/CMakeLists.txt"
-//#include "thunderbots/bazel-thunderbots/external/boost/numeric/ublas.hpp"
+
+#include "Eigen/Dense"
 #include <math.h>
 #include "software/new_geom/polynomial.h"
 #include "software/new_geom/point.h"
@@ -15,7 +13,13 @@
  */
 class Spline {
 public:
-    Spline() = delete;
+    //Spline() = delete;
+
+
+    explicit Spline();
+
+    //Delete later
+    double mariaTest(int b);
 
     /**
      * Construct a spline by drawing Polynomials of set order between
@@ -25,7 +29,7 @@ public:
      *
      * @param points Points Polynomials are drawn between
      */
-    explicit Spline(const std::vector<Point> &points, unsigned int order);
+    //explicit Spline(const std::vector<Point> &points, unsigned int order);
 
     /**
      * Construct a spline by drawing Polynomials of set order between
@@ -35,7 +39,7 @@ public:
      *
      * @param points Points Polynomials are drawn between
      */
-    Spline(const std::initializer_list<Point> &points, unsigned int order);
+    //Spline(const std::initializer_list<Point> &points, unsigned int order);
 
     /**
      * Calculates the value of spline evaluated at value val
@@ -47,37 +51,38 @@ public:
      * @return value of spline evaluated at value val
      * if not defined by a spline then return closest start/end point
      */
-    Point valueAt(double val) const;
+    //Point valueAt(double val) const;
 
     /**
      * Gets the number of knots in the spline including start and end points
      *
      * @return size of the spline
      */
-    int size(void) const;
+    //int size(void) const;
 
     /**
      * Gets knots in the spline including start and end points
      *
      * @return knots in the spline
      */
-    const std::vector<Point> getKnots(void) const;
+    //const std::vector<Point> getKnots(void) const;
 
     /**
      * Gets start point of spline
      *
      * @return start point of spline
      */
-    const Point startPoint(void) const;
+    //const Point startPoint(void) const;
 
     /**
      * Gets end point of spline
      *
      * @return end point of spline
      */
-    const Point endPoint(void) const;
+    //const Point endPoint(void) const;
 
 private:
+    /*
     class SplineSegment{
     public:
         SplineSegment(Polynomial polynomial, Point start, Point end): polynomial(polynomial), start(start), end(end)
@@ -89,11 +94,12 @@ private:
         const Point end;
     };
 
+     */
     // segments represent the polynomials that interpolate between points
-    std::vector<SplineSegment> segments;
+    //std::vector<SplineSegment> segments;
 
     // points that connect segments
-    const std::vector<Point> knots;
+    //const std::vector<Point> knots;
 
     /**
      * Initialize (points.size() - 1) segments of order 'order' interpolating the points
@@ -105,5 +111,5 @@ private:
      * @param points points to interpolate
      * @param order order of interpolating segments
      */
-    void initSegments(const std::vector<Point> &points, unsigned int order);
+    //void initSegments(const std::vector<Point> &points, unsigned int order);
 };

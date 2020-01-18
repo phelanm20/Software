@@ -1,5 +1,27 @@
 #include "software/new_geom/spline.h"
 
+Spline::Spline(){}
+
+double Spline::mariaTest(int b)
+{
+    using namespace Eigen;
+
+    MatrixXd a(1,1);
+    a(0,0) = 3;
+    a = a.adjoint();
+
+    MatrixXd bb(1,1);
+    a(0,0) = b;
+
+    VectorXf x = a*b;
+
+    return x(0,0);
+}
+
+
+//I just commented out everything
+/*
+
 Spline::Spline(const std::vector<Point> &points, unsigned int order) : knots(points)
 {
     initSegments(points);
@@ -10,7 +32,7 @@ Spline::Spline(const std::initializer_list<Point> &points, unsigned int order) :
     initSegments(points);
 }
 
-/*
+
 Point Spline::valueAt(double val) const
 {
     if (val < 0.0 || val > 1.0)
@@ -48,7 +70,7 @@ Point Spline::valueAt(double val) const
 
     return retval;
 }
-*/
+
 
 int Spline::size(void) const
 {
@@ -111,7 +133,7 @@ void getCoeffs(const std::vector<Point> &points, unsigned int order)
         //Initialize coeffs matrix with zeros
         int dimension = (order-1)*(points.size() - 1);
 
-        /*
+
          * You CANNOT use Eigen for this because the Eigen we have (the one under Boost)
          * is a straight up ALGEBRA library and we need MATRICES. So, you need to use the uBLAS library
          * from Boost. Apparently it can solve linear equations stack overflow had a few lines of code.
@@ -120,7 +142,7 @@ void getCoeffs(const std::vector<Point> &points, unsigned int order)
          * Good Luck, it sucks.
          *
          * Might be faster to just stack overflow the stuff.
-         */
+
 
         using Eigen::MatrixXd;
         int main()
@@ -209,3 +231,5 @@ void getCoeffs(const std::vector<Point> &points, unsigned int order)
     }
 }
 
+
+*/

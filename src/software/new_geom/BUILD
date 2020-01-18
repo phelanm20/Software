@@ -22,6 +22,7 @@ cc_library(
         ":ray",
         ":vector",
         "//software/new_geom/util",
+        "@eigen",
     ],
 )
 
