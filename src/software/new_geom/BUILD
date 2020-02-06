@@ -132,6 +132,19 @@ cc_library(
     ],
 )
 
+
+cc_library(
+    name = "spline",
+    srcs = ["spline.cpp"],
+    hdrs = ["spline.h"],
+    deps = [
+        ":polynomial",
+        ":point",
+        ":vector",
+        "@eigen",
+    ],
+)
+
 cc_test(
     name = "angle_test",
     srcs = [
