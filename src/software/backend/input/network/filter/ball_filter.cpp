@@ -1,6 +1,6 @@
 #include "software/backend/input/network/filter/ball_filter.h"
 
-#include <Eigen/Dense>
+#include <eigen3/Eigen/Dense>
 #include <algorithm>
 #include <limits>
 

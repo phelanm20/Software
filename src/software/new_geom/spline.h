@@ -1,7 +1,6 @@
 #pragma once
- 
-#include "Eigen/Dense"
-#include <Eigen/Dense>
+
+#include <eigen3/Eigen/Dense>
 #include <math.h>
 #include "software/new_geom/polynomial.h"
 #include "software/new_geom/point.h"
