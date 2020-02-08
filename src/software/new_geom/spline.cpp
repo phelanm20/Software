@@ -2,21 +2,25 @@
  
 Spline::Spline(){}
  
-//double Spline::mariaTest(int b)
-//{
-//    using namespace Eigen;
+double Spline::mariaTest(int b)
+{
+    using namespace Eigen;
  
-//    MatrixXd a(1,1);
-//    a(0,0) = 3;
-//    a = a.adjoint();
+    MatrixXd a(1,1);
+    a(0,0) = 3;
+    a = a.inverse();
+
+    MatrixXd bb(1,1);
+    bb(0,0) = b;
+
+    a = a*bb;
+
+    //VectorXf x = a*bb;
  
-//    MatrixXd bb(1,1);
-//    a(0,0) = b;
- 
-//    VectorXf x = a*b;
- 
-//    return x(0,0);
-//}
+    //return x(0,0);
+
+    return a(0,0);
+}
  
  
 //I just commented out everything

@@ -266,3 +266,14 @@ cc_test(
         "@gtest//:gtest_main",
     ],
 )
+
+cc_test(
+    name = "spline_test",
+    srcs = [
+        "spline_test.cpp",
+    ],
+    deps = [
+        ":spline",
+        "@gtest//:gtest_main",
+    ],
+)
